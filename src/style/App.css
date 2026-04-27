@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'FunkyBird';
+  src: url('../assets/FunkyBird.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+#game-title {
+  font-family: 'FunkyBird';
+  letter-spacing: 0.04em;
+}
+
+.birdle-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.birdle-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.word-box {
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 0.45em;
+  width: 2em;
+  height: 2em;
+  margin: 0.25em 0.25em;
+  align-items: center;
+  text-align: center;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.bird-color{
+  color: red;
+  fill: red;
+}
