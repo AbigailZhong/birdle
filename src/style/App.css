@@ -1,3 +1,6 @@
+/* General Styling */
+
+/* Funky Bird font by Mans Greback https://www.dafont.com/funky-bird.font */
 @font-face {
   font-family: 'FunkyBird';
   src: url('../assets/FunkyBird.otf') format('opentype');
@@ -6,10 +9,71 @@
   font-display: swap;
 }
 
+.text-brown {
+  color: #916c59;
+}
+
+.body, #root {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  border: none;
+}
+
+/* Page */
+.peacock-bg {
+  background-color: #e4dac7;
+  background-image: url('../assets/peacock.png');
+  background-size: 50% auto;
+}
+
+.dark-mode {
+  background-color: #0f2137;
+  background-image: url('../assets/goldeneye.jpg');
+  background-size: 50% auto;
+}
+
+.page {
+  width: 50%;
+  border: none;
+}
+
+.light-page {
+  background-color: #e4dac7;
+}
+
+.navy-page{
+  background-color: #0f2137;
+}
+
+
+/* Game Title ----------------------------------------------------------------------------------------------*/
+
+#game-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em;
+}
+
 #game-title {
   font-family: 'FunkyBird';
   letter-spacing: 0.04em;
+  margin: 0.5em auto;
 }
+
+/* Theme Toggle button ---------------------------------------------------------------------------------*/
+#theme-toggle {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #654c3f;
+  background-color:#916c59;
+}
+
+/* Birdle Grid ---------------------------------------------------------------------------------------- */
 
 .birdle-grid {
   display: flex;
@@ -24,28 +88,184 @@
 
 .word-box {
   display: flex;
-  border: 1px solid gray;
+  border: 1px solid;
   border-radius: 0.45em;
   width: 2em;
   height: 2em;
   margin: 0.25em 0.25em;
   align-items: center;
   text-align: center;
+  justify-content: center;
+  padding: auto 0;
 }
 
+.brown-word-box {
+  border-color: #916c59;
+}
+
+.light-word-box {
+
+}
+
+/* Color Codes --------------------------------------------------------------------------- */
+
 .yellow {
-  background-color: yellow;
+  background-color: #bda653;
+  color:#654c3f;
 }
 
 .green {
-  background-color: green;
+  background-color: #686c4e;
+  color: #e4dac7;
 }
 
 .gray {
-  background-color: gray;
+  background-color: #cfbdb5;
+  color:#654c3f;
 }
 
-.bird-color{
-  color: red;
-  fill: red;
+/* Onscreen Keyboard ------------------------------------------------------------------- */
+
+#keyboard-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.keyboard-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.key {
+  height: 2.5em;
+  border-radius: 0.45em;
+  border: 1px solid #654c3f;
+  margin: 0.15em 0.15em;
+}
+
+.small-key {
+  width: 2.3em;
+}
+
+.large-key{
+  width: 5em;
+}
+
+.normal-key {
+  background-color:#916c59;
+  color:#e4dac7;
+}
+
+.absent-key {
+  background-color: #ac9c94;
+  color:#cfbdb5;
+}
+
+/* Instructions */
+
+#instructions-container {
+  display: flex;
+  margin: 1em auto;
+}
+
+#color-code-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.color-code {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto 0.5em;
+}
+
+.feather-icon {
+  width: 2em;
+}
+
+.color-code span {
+  font-size: 0.8em;
+}
+
+/* Message */
+
+#message-container {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  background-color: #654c3f;
+  color: #e4dac7;
+  font-size: 0.8em;
+}
+
+/* Hint Button */
+#hint-button {
+  padding: 1em;
+  background-color: #654c3f;
+  border-radius: 0.5em;
+  border: 1px solid #654c3f;
+  color:#e4dac7;
+  margin: 1em auto;
+}
+
+/* Reset Button */
+#reset-button {
+  padding: 1em;
+  background-color: #654c3f;
+  border-radius: 0.5em;
+  border: 1px solid #654c3f;
+  color:#e4dac7;
+  margin: 1em auto;
+}
+
+/* Animations */
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes float {
+  from {
+      top: 22%;
+  }
+  to {
+      top: 20%;
+  }
+}
+
+.float {
+  /* name | duration | timing-function | iteration-count | direction */
+  animation: float 0.3s ease-in-out;
+}
+
+@keyframes flip {
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.animate-flip {
+  animation: flip 0.4s ease-in-out;
+}
+
+.key:hover {
+  transform: scale(0.9);
+  transition: 0.4s ease-in-out;
 }

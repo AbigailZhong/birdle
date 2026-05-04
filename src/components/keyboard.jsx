@@ -4,7 +4,7 @@ const KEYBOARD_ROWS = [
   ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE']
 ];
 
-export function Keyboard({ onKeyPress, letterStates }) {
+export function Keyboard({ onKeyPress, letterStates, isDarkMode }) {
   const getKeyClass = (key) => {
     const state = letterStates.get(key);
     
@@ -14,16 +14,16 @@ export function Keyboard({ onKeyPress, letterStates }) {
       case 'present':
         return 'yellow';
       case 'absent':
-        return 'bg-gray-500 text-white border-gray-500';
+        return 'absent-key';
       default:
-        return 'bg-gray-200 text-black border-gray-300 hover:bg-gray-300';
+        return 'normal-key';
     }
   };
 
   return (
-    <div className="flex flex-col gap-1.5 w-full max-w-lg">
+    <div id="keyboard-container">
       {KEYBOARD_ROWS.map((row, rowIndex) => (
-        <div key={rowIndex} className="flex gap-1.5 justify-center">
+        <div key={rowIndex} className="keyboard-row">
           {row.map((key) => {
             const isWide = key === 'ENTER' || key === 'BACKSPACE';
             
@@ -32,9 +32,7 @@ export function Keyboard({ onKeyPress, letterStates }) {
                 key={key}
                 onClick={() => onKeyPress(key)}
                 className={`
-                  ${isWide ? 'px-4 text-xs' : 'w-10'} 
-                  h-14 rounded font-bold border-2 transition-colors
-                  ${getKeyClass(key)}
+                  ${isWide ? 'large-key' : 'small-key'} key ${getKeyClass(key)}
                 `}
               >
                 {key === 'BACKSPACE' ? '←' : key}

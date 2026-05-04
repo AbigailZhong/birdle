@@ -1,4 +1,4 @@
-export function BirdleGrid({ answer, guesses, currentGuess, letterStates, currentRow, maxGuesses, shake }) {
+export function BirdleGrid({ answer, guesses, currentGuess, letterStates, currentRow, maxGuesses, shake, isDarkMode }) {
   const getLetterClass = (state) => {
     switch (state) {
       case 'correct':
@@ -43,6 +43,7 @@ export function BirdleGrid({ answer, guesses, currentGuess, letterStates, curren
               key={colIndex}
               className={`
                 word-box
+                ${isDarkMode ? 'light-word-box' : 'brown-word-box'}
                 ${getLetterClass(state)}
                 ${hasLetter && state === 'empty' ? 'randomClass' : ''}
                 ${isRevealing ? 'animate-flip' : ''}

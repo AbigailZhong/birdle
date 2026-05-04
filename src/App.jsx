@@ -1,11 +1,12 @@
 import "./style/App.css";
-import BirdIcon from './assets/bird-icon.svg';
+import YellowIcon from './assets/feather-yellow.svg';
+import GreenIcon from './assets/feather-green.svg';
+import GrayIcon from './assets/feather-gray.svg';
 
 import { useEffect, useState, useCallback } from "react";
 import { BirdleGrid } from './components/wordgrid';
 import { Keyboard } from './components/keyboard';
 import { getRandomWord, isValidWord } from './assets/birdlist';
-import { LetterState, GameStatus } from './assets/states';
 
 function App() {
 
@@ -27,9 +28,14 @@ function App() {
   const [shake, setShake] = useState(false);
   //text to display in popup message. Ex: "Not enough letters"
   const [message, setMessage] = useState("");
+  //boolean that toggles dark or light theme
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
 
   const maxGuesses = 6;
   const wordLength = answer.length;
+
+  document.body.classList.add('peacock-bg');
 
   // GAME LOGIC -----------------------------------------------------------------------
   const calculateLetterStates = (guess, answer) => {
@@ -103,7 +109,7 @@ function App() {
 
     //checks for non-valid bird name, runs shake animation if not valid
     if (!isValidWord(currentGuess)) {
-      showMessage("Not in word list");
+      showMessage("Not in bird list");
       triggerShake();
       return;
     }
@@ -121,12 +127,12 @@ function App() {
     //if user guesses correctly, change game state to won & show winning message
     if (currentGuess === answer) {
       setGameStatus("won");
-      showMessage("Congratulations! 🎉");
+      showMessage("Im-peck-able guessing!");
     
     //if user used up all guesses, change game state to lost & show answer
     } else if (currentRow + 1 >= maxGuesses) {
       setGameStatus("lost");
-      showMessage(`The word was: ${answer}`);
+      showMessage(`The word was: ${answer}. You wing some, you lose some.`);
     };
     //reset current input
     setCurrentGuess("");
@@ -196,7 +202,22 @@ function App() {
   //message popup
   const showMessage = (msg) => {
     setMessage(msg);
-    setTimeout(() => setMessage(""), 2000);
+    setTimeout(() => setMessage(""), 5000);
+  };
+
+  //give hint as next letter
+  const handleHint = () => {
+    if (gameStatus !== "playing") return;
+    if (currentGuess.length >= wordLength) {
+      showMessage("Complete the word first");
+      return;
+    }
+
+    // Add the next correct letter
+    const nextPosition = currentGuess.length;
+    const correctLetter = answer[nextPosition];
+    setCurrentGuess(currentGuess + correctLetter);
+    showMessage("Hint used!");
   };
 
   //resets game by clearing all states to original config & getting a new Answer word
@@ -213,18 +234,38 @@ function App() {
 
 
   return (
-    <div className="">
+    <div className={`page ${isDarkMode ? 'navy-page' : 'light-page'}`}>
       {/* Header */}
-      <div className="">
-        <h1 className="" id="game-title">Birdle</h1>
-        <p className="text-gray-600">
-          Guess the bird in {maxGuesses} tries
+      <div id="game-header">
+        <h1 id="game-title" className={`${isDarkMode ? 'text-antique' : 'text-brown'}`}>Birdle</h1>
+        <p className={`${isDarkMode ? 'text-antique' : 'text-brown'}`}>
+          Guess the one-word-bird in {maxGuesses} tries!
         </p>
       </div>
 
+      <button
+        onClick={() => {
+          setIsDarkMode(!isDarkMode);
+          if (document.body.classList.contains('dark-mode')) {
+            // If currently dark, switch to light
+            document.body.classList.remove('dark-mode');
+            document.body.classList.add('peacock-bg');
+          } else {
+            // If currently light, switch to dark
+            document.body.classList.remove('peacock-bg');
+            document.body.classList.add('dark-mode');
+          }
+        }}
+        id="theme-toggle"
+        className={`${isDarkMode ? 'antique-toggle' : 'brown-toggle'}`}
+        aria-label="Toggle theme"
+      >
+        <span className="text-2xl">{isDarkMode ? '☀️' : '🌙'}</span>
+      </button>
+
       {/* Message */}
       {message && (
-        <div className="absolute top-20 bg-gray-800 text-white px-6 py-3 rounded-lg font-bold animate-bounce">
+        <div id="message-container" className="float">
           {message}
         </div>
       )}
@@ -238,52 +279,54 @@ function App() {
         currentRow={currentRow}
         maxGuesses={maxGuesses}
         shake={shake}
+        isDarkMode={isDarkMode}
       />
 
       {/* Keyboard */}
       <Keyboard
         onKeyPress={handleKeyPress}
         letterStates={keyboardStates}
+        isDarkMode={isDarkMode}
       />
+
+      {/* Hint Button */}
+      {gameStatus === "playing" && (
+        <button
+          onClick={handleHint}
+          id="hint-button"
+        >
+          Hint: Next Letter
+        </button>
+      )}
 
       {/* Reset Button */}
       {gameStatus !== "playing" && (
         <button
           onClick={resetGame}
-          className="bg-green-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-700 transition-colors"
+          id="reset-button"
         >
           Play Again
         </button>
       )}
 
       {/* Instructions */}
-      <div className="text-center text-sm text-gray-600 max-w-md">
-        <div className="flex gap-2 justify-center mb-2">
-          <div className="flex items-center gap-1">
-            <div className="w-6 h-6 bg-green-600 rounded"></div>
+      <div id ="instructions-container">
+
+        <div id="color-code-container">
+          <div className="color-code">
+            <img src={GreenIcon} alt="feather icon" className="feather-icon"/>
             <span>Correct</span>
           </div>
-          <div className="flex items-center gap-1">
-            <div className="w-6 h-6 bg-yellow-500 rounded"></div>
+          <div className="color-code">
+            <img src={YellowIcon} alt="feather icon" className="feather-icon"/>
             <span>Wrong spot</span>
           </div>
-          <div className="flex items-center gap-1">
-            <div className="w-6 h-6 bg-gray-500 rounded"></div>
-            <div className="bird-color">
-              <img src={BirdIcon} alt="bird icon" width="60em" height={"60em"}/>
-              <img 
-                src={BirdIcon} 
-                alt="bird icon" 
-                width="60" 
-                height="60"
-                style={{ filter: 'hue-rotate(90deg)' }} // turns it white, for example
-              />
-            </div>
-            
+          <div className="color-code">
+            <img src={GrayIcon} alt="feather icon" className="feather-icon"/>
             <span>Not in word</span>
           </div>
         </div>
-      </div>
+      </div> {/* instructions container */}
     </div>
   );
 
