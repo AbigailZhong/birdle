@@ -300,14 +300,14 @@ function App() {
       )}
 
       {/* Reset Button */}
-      {
+      {gameStatus !== "playing" && (
         <button
           onClick={resetGame}
           id="reset-button"
         >
           Play Again
         </button>
-      }
+      )}
 
       {/* Instructions */}
       <div id ="instructions-container">
