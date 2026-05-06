@@ -13,6 +13,10 @@
   color: #916c59;
 }
 
+.text-antique {
+  color: #f0b47e;
+}
+
 .body, #root {
   display: flex;
   justify-content: center;
@@ -29,7 +33,7 @@
 
 .dark-mode {
   background-color: #0f2137;
-  background-image: url('../assets/goldeneye.jpg');
+  background-image: url('../assets/goldeneye.png');
   background-size: 50% auto;
 }
 
@@ -101,10 +105,12 @@
 
 .brown-word-box {
   border-color: #916c59;
+  color:#654c3f;
 }
 
 .light-word-box {
-
+  border-color: #916c59;
+  color:#f0b47e;
 }
 
 /* Color Codes --------------------------------------------------------------------------- */
@@ -145,6 +151,14 @@
   margin: 0.15em 0.15em;
 }
 
+.key-brown {
+  background-color:#916c59;
+}
+
+.key-antique {
+  background-color: #f0b47e;
+}
+
 .small-key {
   width: 2.3em;
 }
@@ -154,7 +168,7 @@
 }
 
 .normal-key {
-  background-color:#916c59;
+  background-color: #916c59;
   color:#e4dac7;
 }
 
@@ -163,11 +177,11 @@
   color:#cfbdb5;
 }
 
-/* Instructions */
+/* Instructions ---------------------------------------------------------------------------------------------------*/
 
 #instructions-container {
   display: flex;
-  margin: 1em auto;
+  margin: 0.5em auto;
 }
 
 #color-code-container {
@@ -207,24 +221,38 @@
   font-size: 0.8em;
 }
 
+/* Button Container ------------------------------------------------------------------------- */
+
+#button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 /* Hint Button */
 #hint-button {
   padding: 1em;
-  background-color: #654c3f;
   border-radius: 0.5em;
-  border: 1px solid #654c3f;
-  color:#e4dac7;
-  margin: 1em auto;
+  margin: 0.5em 1em;
 }
 
 /* Reset Button */
 #reset-button {
   padding: 1em;
-  background-color: #654c3f;
   border-radius: 0.5em;
-  border: 1px solid #654c3f;
+  margin: 0.5em 1em;
+}
+
+.button-brown{
+  background-color: #654c3f;
   color:#e4dac7;
-  margin: 1em auto;
+  border: 1px solid #654c3f;
+}
+
+.button-antique {
+  background-color: #f0b47e;
+  color: #0f2137;
+  border: 1px solid #0f2137;
 }
 
 /* Animations */
@@ -262,7 +290,7 @@
 }
 
 .animate-flip {
-  animation: flip 0.4s ease-in-out;
+  animation: flip 0.3s ease-in-out;
 }
 
 .key:hover {

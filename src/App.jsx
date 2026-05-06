@@ -138,14 +138,16 @@ function App() {
     setCurrentGuess("");
     //move one row down
     setCurrentRow(currentRow + 1);
-  }, [
+  }, 
+  [
     currentGuess,
     currentRow,
     guesses,
     letterStates,
     answer,
     keyboardStates,
-  ]);
+  ]
+);
 
   //ON-SCREEN KEYBOARD LOGIC ------------------------------------------------------------------------------
   // handles clicking the keyboard buttons on-screen
@@ -230,6 +232,8 @@ function App() {
     setLetterStates([]);
     setKeyboardStates(new Map());
     setMessage("");
+    setShake('false');
+    setIsDarkMode(isDarkMode);
   };
 
 
@@ -260,7 +264,7 @@ function App() {
         className={`${isDarkMode ? 'antique-toggle' : 'brown-toggle'}`}
         aria-label="Toggle theme"
       >
-        <span className="text-2xl">{isDarkMode ? '☀️' : '🌙'}</span>
+        <span>{isDarkMode ? '☀️' : '🌙'}</span>
       </button>
 
       {/* Message */}
@@ -289,44 +293,47 @@ function App() {
         isDarkMode={isDarkMode}
       />
 
-      {/* Hint Button */}
-      {gameStatus === "playing" && (
-        <button
-          onClick={handleHint}
-          id="hint-button"
-        >
-          Hint: Next Letter
-        </button>
-      )}
-
-      {/* Reset Button */}
-      {gameStatus !== "playing" && (
-        <button
-          onClick={resetGame}
-          id="reset-button"
-        >
-          Play Again
-        </button>
-      )}
-
       {/* Instructions */}
       <div id ="instructions-container">
 
         <div id="color-code-container">
           <div className="color-code">
             <img src={GreenIcon} alt="feather icon" className="feather-icon"/>
-            <span>Correct</span>
+            <span className={`${isDarkMode ? 'text-antique' : 'text-brown'}`}>Correct</span>
           </div>
           <div className="color-code">
             <img src={YellowIcon} alt="feather icon" className="feather-icon"/>
-            <span>Wrong spot</span>
+            <span className={`${isDarkMode ? 'text-antique' : 'text-brown'}`}>Wrong spot</span>
           </div>
           <div className="color-code">
             <img src={GrayIcon} alt="feather icon" className="feather-icon"/>
-            <span>Not in word</span>
+            <span className={`${isDarkMode ? 'text-antique' : 'text-brown'}`}>Not in word</span>
           </div>
         </div>
       </div> {/* instructions container */}
+
+      <div id="button-container">
+        {/* Hint Button */}
+        {gameStatus === "playing" && (
+          <button
+            onClick={handleHint}
+            className={`${isDarkMode ? 'button-antique' : 'button-brown'}`}
+            id="hint-button"
+          >
+            Hint: Next Letter
+          </button>
+        )}
+
+        {/* Reset Button */}
+        {<button
+            onClick={resetGame}
+            className={`${isDarkMode ? 'button-antique' : 'button-brown'}`}
+            id="reset-button"
+          >
+            New Game
+          </button>
+        }
+      </div>
     </div>
   );
 
