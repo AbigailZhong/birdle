@@ -252,6 +252,15 @@
   margin: 0.5em 1em;
 }
 
+/* Mobile SUbmit Button */
+#mobile-submit-button {
+  width: 9em;
+  padding: 0.8em;
+  border-radius: 0.5em;
+  margin: 0.5em 1em;
+  display: none;
+}
+
 .button-brown{
   background-color: #654c3f;
   color:#e4dac7;
@@ -350,6 +359,10 @@
   #hint-button, #reset-button {
     width: 9em;
     padding: 0.8em;
+  }
+
+  #mobile-submit-button {
+    display: block;
   }
 
 }

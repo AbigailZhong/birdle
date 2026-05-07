@@ -336,6 +336,14 @@ function App() {
             New Game
           </button>
         }
+
+        {/* Mobile Submit Guess Button */}
+        {<button
+          onClick={submitGuess}
+          id="mobile-submit-button"
+          className={`${isDarkMode ? 'button-antique' : 'button-brown'}`}
+          > Submit
+          </button>}
       </div>
     </div>
   );
