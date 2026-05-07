@@ -306,3 +306,50 @@
   transform: scale(0.9);
   transition: 0.3s ease-in-out;
 }
+
+/* Mobile Styling ------------------------------------------------------------------------------- */
+@media screen and (max-width: 600px) {
+  .page {
+    width: 85%;
+  }
+
+  #game-header{
+    margin-top: 3em;
+    padding: 1em;
+  }
+
+  #theme-toggle{
+    padding: 0.5em;
+    top: 2%;
+    left: 10%;
+  }
+
+  .birdle-grid{
+    padding: 0.5em;
+  }
+
+  .word-box {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  #instructions-container {
+    margin: 1em auto;
+  }
+
+  .color-code span{
+    line-height: 1em;
+  }
+
+  #button-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #hint-button, #reset-button {
+    width: 9em;
+    padding: 0.8em;
+  }
+
+}
