@@ -208,7 +208,7 @@ function App() {
   };
 
   //give hint as next letter
-  const handleHint = () => {
+  const handleHint = (e) => {
     if (gameStatus !== "playing") return;
     if (currentGuess.length >= wordLength) {
       showMessage("Complete the word first");
@@ -220,10 +220,11 @@ function App() {
     const correctLetter = answer[nextPosition];
     setCurrentGuess(currentGuess + correctLetter);
     showMessage("Hint used!");
+    e.currentTarget.blur();
   };
 
   //resets game by clearing all states to original config & getting a new Answer word
-  const resetGame = () => {
+  const resetGame = (e) => {
     setAnswer(getRandomWord());
     setGuesses([]);
     setCurrentGuess("");
@@ -234,6 +235,7 @@ function App() {
     setMessage("");
     setShake('false');
     setIsDarkMode(isDarkMode);
+    e.currentTarget.blur();
   };
 
 
@@ -248,7 +250,7 @@ function App() {
       </div>
 
       <button
-        onClick={() => {
+        onClick={(e) => {
           setIsDarkMode(!isDarkMode);
           if (document.body.classList.contains('dark-mode')) {
             // If currently dark, switch to light
@@ -259,9 +261,10 @@ function App() {
             document.body.classList.remove('peacock-bg');
             document.body.classList.add('dark-mode');
           }
+          e.currentTarget.blur();
         }}
         id="theme-toggle"
-        className={`${isDarkMode ? 'antique-toggle' : 'brown-toggle'}`}
+        className={`${isDarkMode ? 'cream-toggle' : 'navy-toggle'}`}
         aria-label="Toggle theme"
       >
         <span>{isDarkMode ? '☀️' : '🌙'}</span>

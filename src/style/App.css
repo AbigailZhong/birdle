@@ -72,9 +72,18 @@
   top: 5%;
   left: 5%;
   padding: 1em;
-  border-radius: 0.5em;
+  border-radius: 1em;
   border: 1px solid #654c3f;
-  background-color:#916c59;
+}
+
+.navy-toggle {
+  background-color: #0f2137;
+  border: 1px solid #654c3f;
+}
+
+.cream-toggle {
+  background-color: #cfbdb5;
+  border: 1px solid #bda653;
 }
 
 /* Birdle Grid ---------------------------------------------------------------------------------------- */
@@ -293,7 +302,7 @@
   animation: flip 0.3s ease-in-out;
 }
 
-.key:hover {
+.key:hover, #theme-toggle:hover, #hint-button:hover, #reset-button:hover {
   transform: scale(0.9);
-  transition: 0.4s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
